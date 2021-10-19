@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.bottomnavigation.R
+import com.example.bottomnavigation.databinding.FragmentImageBinding
+import com.example.bottomnavigation.databinding.FragmentInfoBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +23,8 @@ class ImageFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var mbinding : FragmentImageBinding? = null
+    private val binding get() = mbinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,9 +38,33 @@ class ImageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_image, container, false)
+        mbinding = FragmentImageBinding.inflate(inflater, container, false)
+
+        return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        clickChange()
+    }
+
+    /**
+     * @DESC: 이미지 변경
+     */
+    fun clickChange(){
+        var count = 0
+        binding.btnImgChange.setOnClickListener{v->
+            if(count==0) {
+                binding.imageView.setImageResource(R.drawable.img_kyary2)
+                count++
+            } else{
+                binding.imageView.setImageResource(R.drawable.img_kyaru)
+                count--
+            }
+        }
+    }
+
 
     companion object {
         /**

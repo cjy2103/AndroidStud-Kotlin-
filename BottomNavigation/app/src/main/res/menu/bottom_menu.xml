@@ -8,7 +8,7 @@
     />
 
     <item
-        android:id="@+id/album_fragment"
+        android:id="@+id/image_fragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_image_24"
         android:title="이미지"
