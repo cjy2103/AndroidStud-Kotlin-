@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SubActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="SubActivity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/tv_integer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/tv_string"
+        app:layout_constraintStart_toStartOf="@+id/tv_string"
+        app:layout_constraintTop_toBottomOf="@+id/tv_string" />
+
+    <TextView
+        android:id="@+id/tv_boolean"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/tv_integer"
+        app:layout_constraintStart_toStartOf="@+id/tv_integer"
+        app:layout_constraintTop_toBottomOf="@+id/tv_integer" />
+
+    <TextView
+        android:id="@+id/tv_array"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/tv_boolean"
+        app:layout_constraintStart_toStartOf="@+id/tv_boolean"
+        app:layout_constraintTop_toBottomOf="@+id/tv_boolean" />
+
+    <Button
+        android:id="@+id/btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/custom_button"
+        android:text="닫기"
+        app:layout_constraintEnd_toEndOf="@+id/tv_array"
+        app:layout_constraintStart_toStartOf="@+id/tv_array"
+        app:layout_constraintTop_toBottomOf="@+id/tv_array" />
+</androidx.constraintlayout.widget.ConstraintLayout>
