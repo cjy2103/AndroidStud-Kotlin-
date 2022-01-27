@@ -1,8 +1,10 @@
 package com.example.alertdialogexplain
 
 import android.content.Context
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.alertdialogexplain.databinding.ActivityMainBinding
 
@@ -46,7 +48,12 @@ class MainActivity : AppCompatActivity() {
 
             builder.setTitle("AlertDialog 띄우기")
                 .setMessage("이부분은 메시지를 입력하는 부분입니다.")
-                .setPositiveButton("OK", )
+                .setPositiveButton("OK") { dialog, i ->
+                    Toast.makeText(mContext, "OK버튼 클릭됨", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("Cancel") {dialog, i ->
+                    Toast.makeText(mContext, "Cancel 버튼 클릭됨",Toast.LENGTH_SHORT).show()
+                }.create().show()
         }
     }
 }
