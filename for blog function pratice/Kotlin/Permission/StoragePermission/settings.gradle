@@ -1,0 +1,2 @@
+rootProject.name = "StoragePermissionTest"
+include ':app'
