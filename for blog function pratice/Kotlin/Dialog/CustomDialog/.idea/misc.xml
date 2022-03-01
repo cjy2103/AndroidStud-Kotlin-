@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Yalla Android/AndroidStud(Kotlin)/for blog function pratice/Kotlin/Dialog/CustomDialog/app/src/main/res/drawable/custom_button_ripple.xml" value="0.316" />
+        <entry key="..\:/Yalla Android/AndroidStud(Kotlin)/for blog function pratice/Kotlin/Dialog/CustomDialog/app/src/main/res/drawable/dialog_message_area.xml" value="0.3365" />
+        <entry key="..\:/Yalla Android/AndroidStud(Kotlin)/for blog function pratice/Kotlin/Dialog/CustomDialog/app/src/main/res/drawable/dialog_title_area.xml" value="0.3365" />
         <entry key="..\:/Yalla Android/AndroidStud(Kotlin)/for blog function pratice/Kotlin/Dialog/CustomDialog/app/src/main/res/layout/activity_main.xml" value="0.31302083333333336" />
-        <entry key="..\:/Yalla Android/AndroidStud(Kotlin)/for blog function pratice/Kotlin/Dialog/CustomDialog/app/src/main/res/layout/custom_dialog.xml" value="0.31302083333333336" />
+        <entry key="..\:/Yalla Android/AndroidStud(Kotlin)/for blog function pratice/Kotlin/Dialog/CustomDialog/app/src/main/res/layout/custom_dialog.xml" value="0.33" />
       </map>
     </option>
   </component>
