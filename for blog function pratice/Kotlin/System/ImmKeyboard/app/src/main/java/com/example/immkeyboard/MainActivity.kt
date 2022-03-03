@@ -34,13 +34,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
+    /**
+     * @DESC: 초기화
+     */
     private fun initalize(){
         binding.edtInput.requestFocus()
         imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
     }
 
     /**
-     * @DESC: IMM 키보드 열기
+     * @DESC: 키보드 열기
      */
     private fun clickOpen(){
         binding.btnOpen.setOnClickListener {
@@ -49,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * @DESC: IMM 키보드 닫기
+     * @DESC: 키보드 닫기
      */
     private fun clickClose(){
         binding.btnClose.setOnClickListener {
