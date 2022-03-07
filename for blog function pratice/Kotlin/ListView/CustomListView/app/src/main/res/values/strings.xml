@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">CustomListView</string>
+
+    <string name="baknana">박나나</string>
+    <string name="bak_describe">롤 방송 자주하는 트위치 스트리머</string>
+
+    <string name="djmax">클리어, 페일</string>
+    <string name="djmax_descibe">Djmax 캐릭터</string>
+
+    <string name="djmax_song">Falling In Love</string>
+    <string name="djmax_song_describe">Djmax 곡</string>
+
+    <string name="mwamwa">뫄뫄</string>
+    <string name="mwamwa_descibe">트위치 스트리머</string>
+
+    <string name="tamtam">탬탬버린</string>
+    <string name="tamtam_describe">트위치 스트리머</string>
 </resources>
