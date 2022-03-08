@@ -2,10 +2,12 @@ package com.example.customlistview.listView
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import com.bumptech.glide.Glide
 import com.example.customlistviewdetail.databinding.CustomListviewBinding
 
 class ListViewAdapter : BaseAdapter() {
@@ -22,7 +24,7 @@ class ListViewAdapter : BaseAdapter() {
      * @DESC: 저장한 위치에 있는 데이터
      */
     override fun getItem(position: Int): Any {
-        return listViewItems.get(position)
+        return listViewItems[position]
     }
 
     /**
@@ -50,7 +52,10 @@ class ListViewAdapter : BaseAdapter() {
 
         val listViewItem = listViewItems[position]
 
-        binding.imageView.setImageDrawable(listViewItem.image)
+        val image = Uri.parse("android.resource://" + context.packageName + "/" + listViewItem.image)
+
+        Glide.with(context).load(image).into(binding.imageView)
+//        binding.imageView.setImageDrawable(listViewItem.image)
         binding.tvTitle.text = listViewItem.title
         binding.tvDescribe.text = listViewItem.describe
 
@@ -60,13 +65,22 @@ class ListViewAdapter : BaseAdapter() {
     /**
      * @DESC: 아이템 테이터 추가
      */
-    fun addItem(parmImage : Drawable, parmTitle : String, parmDescribe : String){
+    fun addItem(parmImage : String, parmTitle : String, parmDescribe : String
+              , parmYouTubeLink : String){
         val item = ListViewItem()
 
-        item.image = parmImage
-        item.title = parmTitle
-        item.describe = parmDescribe
+        item.image          = parmImage
+        item.title          = parmTitle
+        item.describe       = parmDescribe
+        item.youtubeLink    = parmYouTubeLink
 
         listViewItems.add(item)
+    }
+
+    /**
+     * @DESC: 아이템 초기화
+     */
+    fun clearItem(){
+        listViewItems.clear()
     }
 }

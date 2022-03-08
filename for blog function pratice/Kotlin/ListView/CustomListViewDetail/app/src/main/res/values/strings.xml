@@ -3,16 +3,21 @@
 
     <string name="baknana">박나나</string>
     <string name="bak_describe">롤 방송 자주하는 트위치 스트리머</string>
+    <string name="bak_link">https://www.youtube.com/channel/UCS3_H_feQRm4QbXipKTvSrw</string>
 
     <string name="djmax">클리어, 페일</string>
     <string name="djmax_descibe">Djmax 캐릭터</string>
+    <string name="djmax_link">https://www.youtube.com/c/DJMAXARCHIVE</string>
 
     <string name="djmax_song">Falling In Love</string>
     <string name="djmax_song_describe">Djmax 곡</string>
+    <string name="djmax_song_link">youtube.com/watch?v=I3M_CNtzATY&amp;list=PLTYTzv6_Hb-wROjNoSYeeHDQyT8G7zvP7&amp;index=51</string>
 
     <string name="mwamwa">뫄뫄</string>
     <string name="mwamwa_descibe">트위치 스트리머</string>
+    <string name="mwamwa_link">https://www.youtube.com/c/%EB%A7%88%EB%AB%84</string>
 
     <string name="tamtam">탬탬버린</string>
     <string name="tamtam_describe">트위치 스트리머</string>
+    <string name="tamtam_link">https://www.youtube.com/channel/UCCA8UWUW80iHqK9ymdjRwPg</string>
 </resources>
