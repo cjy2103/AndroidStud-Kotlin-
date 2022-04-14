@@ -1,5 +1,5 @@
 package com.example.customrecyclerview.model
 
 class MyListItem {
-    private lateinit var list : ArrayList<ListItemModel>
+    internal lateinit var list: ArrayList<ListItemModel>
 }

@@ -1,8 +1,8 @@
 package com.example.customrecyclerview.model
 
 class ListItemModel {
-    private lateinit var title : String
-    private lateinit var describe : String
-    private lateinit var  uri : String
+    internal lateinit var title: String
+    internal lateinit var describe: String
+    internal lateinit var uri: String
 
 }
