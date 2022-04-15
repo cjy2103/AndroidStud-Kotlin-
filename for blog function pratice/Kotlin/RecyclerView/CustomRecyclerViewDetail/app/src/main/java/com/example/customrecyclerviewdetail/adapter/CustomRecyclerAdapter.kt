@@ -51,8 +51,6 @@ class CustomRecyclerAdapter() : RecyclerView.Adapter<CustomRecyclerAdapter.ViewH
         } else {
             notWordEmpty(holder, position)
         }
-
-
     }
 
     override fun getItemCount(): Int {
@@ -60,7 +58,7 @@ class CustomRecyclerAdapter() : RecyclerView.Adapter<CustomRecyclerAdapter.ViewH
     }
 
     /**
-     * @DESC : EdtText 가 비었을 때
+     * @DESC : EditText 가 비었을 때
      */
     private fun wordEmpty(holder: ViewHolder, position: Int){
         val imagePath = Uri.parse(
@@ -72,7 +70,7 @@ class CustomRecyclerAdapter() : RecyclerView.Adapter<CustomRecyclerAdapter.ViewH
     }
 
     /**
-     * @DESC: EdtText에 단어가 있을 때
+     * @DESC: EditText에 단어가 있을 때
      */
     private fun notWordEmpty(holder : ViewHolder, position: Int){
         val imagePath = Uri.parse(

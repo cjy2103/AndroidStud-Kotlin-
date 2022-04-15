@@ -111,6 +111,9 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    /**
+     * @DESC: 단어필터
+     */
     private fun filterWord(word: String) {
         searchIndexList.clear()
 
