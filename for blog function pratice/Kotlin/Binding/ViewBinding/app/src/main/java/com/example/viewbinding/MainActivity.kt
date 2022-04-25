@@ -10,9 +10,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        initBinding()
+        viewBinding()
 
         wordChagne()
 
@@ -21,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * @DESC:초기 바인딩
      */
-    private fun initBinding(){
+    private fun viewBinding(){
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
