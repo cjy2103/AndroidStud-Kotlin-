@@ -57,25 +57,26 @@ class MainActivity : AppCompatActivity() {
     private fun listAdd(){
         val imageUri = "drawable://"
         addItem(resources.getString(R.string.baknana),resources.getString(R.string.bak_describe)
-            , imageUri + R.drawable.baknana)
+            , imageUri + R.drawable.baknana, resources.getString(R.string.baknana_link))
         addItem(resources.getString(R.string.djmax),resources.getString(R.string.djmax_describe)
-            , imageUri + R.drawable.djmax_clear_fail)
+            , imageUri + R.drawable.djmax_clear_fail , resources.getString(R.string.djmax_archive))
         addItem(resources.getString(R.string.djmax_falling_love),resources.getString(R.string.djmax_falling_love_describe)
-            , imageUri + R.drawable.djmax_falling_in_love)
+            , imageUri + R.drawable.djmax_falling_in_love, resources.getString(R.string.djmax_falling_love_link))
         addItem(resources.getString(R.string.mwamwa),resources.getString(R.string.mwamwa_describe)
-            , imageUri + R.drawable.mwama)
+            , imageUri + R.drawable.mwama, resources.getString(R.string.mwamwa_link))
         addItem(resources.getString(R.string.tamtam),resources.getString(R.string.tamtam_describe)
-            , imageUri + R.drawable.tamtam)
+            , imageUri + R.drawable.tamtam, resources.getString(R.string.tamtam_link))
     }
 
     /**
      * @DESC: 아이템 추가
      */
-    private fun addItem(title: String, describe: String, path: String) {
+    private fun addItem(title: String, describe: String, path: String, link : String) {
         val listItemModel = ListItemModel()
         listItemModel.title =  title
         listItemModel.describe = describe
         listItemModel.uri = path
+        listItemModel.youtubeLink = link
 
         val myListItem = MyListItem()
         val items = ArrayList<ListItemModel>()
@@ -124,6 +125,7 @@ class MainActivity : AppCompatActivity() {
         if(binding.edtInput.text.toString() == ""){
             adapter = CustomRecyclerAdapter(this, this, myListItems, myListItems.size, word)
             binding.recyclerList.adapter = adapter
+            itemClick()
         } else {
             for(i in 0 until myListItems.size){
                 if(myListItems.get(i).list[0].title.lowercase().contains(word)){
@@ -133,9 +135,14 @@ class MainActivity : AppCompatActivity() {
             adapter = CustomRecyclerAdapter(this, this, myListItems, searchIndexList, searchIndexList.size, word)
 
             binding.recyclerList.adapter = adapter
+
+            filterWordClick()
         }
     }
 
+    /**
+     * @DESC: Recycler 아이템 클릭 case 빈칸
+     */
     private fun itemClick(){
         val intent = Intent(this,RecyclerItemDetailActivity::class.java)
         adapter.setOnItemClickListener(object : CustomRecyclerAdapter.OnItemClickListener {
@@ -146,6 +153,20 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         })
+    }
 
+    /**
+     * @DESC: Recycler 아이템 클릭 case 단어입력
+     */
+    private fun filterWordClick(){
+        val intent = Intent(this,RecyclerItemDetailActivity::class.java)
+        adapter.setOnItemClickListener(object : CustomRecyclerAdapter.OnItemClickListener {
+            override fun onItemClick(v: View, position: Int) {
+                val bundle = Bundle()
+                bundle.putSerializable("itemObject", myListItems[searchIndexList[position]])
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+        })
     }
 }
