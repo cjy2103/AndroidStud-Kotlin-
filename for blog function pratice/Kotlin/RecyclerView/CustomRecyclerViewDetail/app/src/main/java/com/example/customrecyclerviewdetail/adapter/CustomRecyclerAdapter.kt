@@ -22,6 +22,16 @@ class CustomRecyclerAdapter() : RecyclerView.Adapter<CustomRecyclerAdapter.ViewH
     private var size by Delegates.notNull<Int>()
     private lateinit var word: String
 
+    private var mListener: CustomRecyclerAdapter.OnItemClickListener? = null
+
+    interface OnItemClickListener{
+        fun onItemClick(v : View, position: Int)
+    }
+
+    fun setOnItemClickListener(listener: CustomRecyclerAdapter.OnItemClickListener) {
+        mListener = listener
+    }
+
     constructor(context: Context, activity: Activity, myListItem: ArrayList<MyListItem>, size: Int, word : String) : this(){
         this.context = context
         this.activity = activity
@@ -82,15 +92,27 @@ class CustomRecyclerAdapter() : RecyclerView.Adapter<CustomRecyclerAdapter.ViewH
     }
 
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var mBinding: RecyclerViewListBinding? = null
         val binding get() = mBinding!!
-        private fun initBinding() {
+
+        init {
+            viewBinding()
+            itemClick(itemView)
+        }
+
+        private fun viewBinding() {
             mBinding = RecyclerViewListBinding.bind(itemView)
         }
 
-        init {
-            initBinding()
+        private fun itemClick(itemView: View) {
+            itemView.setOnClickListener {
+                val pos = bindingAdapterPosition
+                if (pos != RecyclerView.NO_POSITION) {
+                    mListener!!.onItemClick(it!!, pos)
+                }
+            }
         }
+
     }
 }

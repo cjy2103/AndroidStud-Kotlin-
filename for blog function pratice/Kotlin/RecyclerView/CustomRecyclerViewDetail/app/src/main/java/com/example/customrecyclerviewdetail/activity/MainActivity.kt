@@ -1,8 +1,10 @@
-package com.example.customrecyclerview
+package com.example.customrecyclerviewdetail.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.customrecyclerview.adapter.CustomRecyclerAdapter
@@ -28,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         listAdd()
         recyclerViewConnection()
         wordIntput()
+        itemClick()
+
     }
 
     /**
@@ -130,5 +134,18 @@ class MainActivity : AppCompatActivity() {
 
             binding.recyclerList.adapter = adapter
         }
+    }
+
+    private fun itemClick(){
+        val intent = Intent(this,RecyclerItemDetailActivity::class.java)
+        adapter.setOnItemClickListener(object : CustomRecyclerAdapter.OnItemClickListener {
+            override fun onItemClick(v: View, position: Int) {
+                val bundle = Bundle()
+                bundle.putSerializable("itemObject", myListItems[position])
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+        })
+
     }
 }
