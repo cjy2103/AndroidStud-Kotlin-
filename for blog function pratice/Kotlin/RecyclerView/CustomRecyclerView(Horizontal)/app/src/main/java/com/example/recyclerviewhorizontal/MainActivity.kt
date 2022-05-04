@@ -32,7 +32,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initialize(){
         listItem = ArrayList()
-        binding.recyclerList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerList.layoutManager = LinearLayoutManager(this
+            , LinearLayoutManager.HORIZONTAL, false)
     }
 
     private fun listAdd(){
