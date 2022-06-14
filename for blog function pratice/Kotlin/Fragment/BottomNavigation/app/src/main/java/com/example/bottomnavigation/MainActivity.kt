@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         systemUtil.sofNavigationBarHide(window)
 
         supportFragmentManager.beginTransaction().replace(R.id.main_frame, djMaxFragment).commit()
+        menu.findItem(R.id.djmax_fragment).setIcon(R.drawable.iv_djmax_fail)
 
     }
 
@@ -59,16 +60,38 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId){
             R.id.djmax_fragment -> {
                 supportFragmentManager.beginTransaction().replace(R.id.main_frame, djMaxFragment).commit()
+                screenChange(djMaxFragment, item)
             }
 
             R.id.momoi_fragment -> {
                 supportFragmentManager.beginTransaction().replace(R.id.main_frame, momoiFragment).commit()
+                screenChange(momoiFragment, item)
             }
 
             R.id.midori_fragment -> {
                 supportFragmentManager.beginTransaction().replace(R.id.main_frame, midoriFragment).commit()
+                screenChange(midoriFragment, item)
             }
 
+        }
+    }
+
+    private fun screenChange(fragment : Fragment, item: MenuItem){
+        supportFragmentManager.beginTransaction().replace(R.id.main_frame, fragment).commit()
+        menu.findItem(R.id.djmax_fragment).setIcon(R.drawable.iv_djmax)
+        menu.findItem(R.id.momoi_fragment).setIcon(R.drawable.iv_momoi)
+        menu.findItem(R.id.midori_fragment).setIcon(R.drawable.iv_midori)
+
+        when(item.itemId){
+            R.id.djmax_fragment -> {
+                item.setIcon(R.drawable.iv_djmax_fail)
+            }
+            R.id.momoi_fragment -> {
+                item.setIcon(R.drawable.iv_alice)
+            }
+            R.id.midori_fragment -> {
+                item.setIcon(R.drawable.iv_yuse)
+            }
         }
     }
 }
