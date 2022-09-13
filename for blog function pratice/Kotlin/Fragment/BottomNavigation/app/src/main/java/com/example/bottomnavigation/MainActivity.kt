@@ -1,9 +1,9 @@
 package com.example.bottomnavigation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.bottomnavigation.databinding.ActivityMainBinding
 import com.example.bottomnavigation.fragment.DjmaxFragment
@@ -18,9 +18,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var menu: Menu
 
-    private val djMaxFragment : DjmaxFragment = DjmaxFragment()
-    private val momoiFragment : MomoiFragment = MomoiFragment()
-    private val midoriFragment : MidoriFragment = MidoriFragment()
+    private var djMaxFragment : DjmaxFragment = DjmaxFragment()
+    private var momoiFragment : MomoiFragment = MomoiFragment()
+    private var midoriFragment : MidoriFragment = MidoriFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,17 +59,25 @@ class MainActivity : AppCompatActivity() {
     private fun changeFragment(item: MenuItem){
         when (item.itemId){
             R.id.djmax_fragment -> {
-                supportFragmentManager.beginTransaction().replace(R.id.main_frame, djMaxFragment).commit()
+                if(!djMaxFragment.isAdded){
+                    supportFragmentManager.beginTransaction().add(R.id.main_frame, djMaxFragment)
+                        .commit()
+                }
                 screenChange(djMaxFragment, item)
             }
 
             R.id.momoi_fragment -> {
-                supportFragmentManager.beginTransaction().replace(R.id.main_frame, momoiFragment).commit()
+                if(!momoiFragment.isAdded) {
+                    supportFragmentManager.beginTransaction().add(R.id.main_frame, momoiFragment).commit()
+                }
+
                 screenChange(momoiFragment, item)
             }
 
             R.id.midori_fragment -> {
-                supportFragmentManager.beginTransaction().replace(R.id.main_frame, midoriFragment).commit()
+                if(!midoriFragment.isAdded){
+                    supportFragmentManager.beginTransaction().add(R.id.main_frame, midoriFragment).commit()
+                }
                 screenChange(midoriFragment, item)
             }
 
@@ -77,7 +85,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun screenChange(fragment : Fragment, item: MenuItem){
-        supportFragmentManager.beginTransaction().replace(R.id.main_frame, fragment).commit()
+        allScreenHide();
+        if (fragment.isAdded) supportFragmentManager.beginTransaction().show(fragment).commit()
+
         menu.findItem(R.id.djmax_fragment).setIcon(R.drawable.iv_djmax)
         menu.findItem(R.id.momoi_fragment).setIcon(R.drawable.iv_momoi)
         menu.findItem(R.id.midori_fragment).setIcon(R.drawable.iv_midori)
@@ -93,5 +103,17 @@ class MainActivity : AppCompatActivity() {
                 item.setIcon(R.drawable.iv_yuse)
             }
         }
+    }
+
+    /**
+     * @DESC: 생성된 모든화면 숨김처리
+     */
+    private fun allScreenHide() {
+        if (djMaxFragment.isAdded) supportFragmentManager.beginTransaction().hide(djMaxFragment)
+            .commit()
+        if (momoiFragment.isAdded) supportFragmentManager.beginTransaction().hide(momoiFragment)
+            .commit()
+        if (midoriFragment.isAdded) supportFragmentManager.beginTransaction().hide(midoriFragment)
+            .commit()
     }
 }
