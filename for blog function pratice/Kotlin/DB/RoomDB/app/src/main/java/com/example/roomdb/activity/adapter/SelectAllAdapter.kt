@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.roomdb.R
 import com.example.roomdb.activity.DAO.DataDAO
 import com.example.roomdb.databinding.RecyclerSelectAllItemBinding
+import com.example.roomdb.util.LogUtils
 
-class SelectAllAdapter(private var context : Context, private var list : ArrayList<DataDAO>)
+class SelectAllAdapter(private val context : Context, private val list : ArrayList<DataDAO>)
     : RecyclerView.Adapter<SelectAllAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,11 +28,11 @@ class SelectAllAdapter(private var context : Context, private var list : ArrayLi
     }
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-        var mBinding : RecyclerSelectAllItemBinding? = null
+        var mBinding: RecyclerSelectAllItemBinding? = null
         val binding get() = mBinding!!
 
         private fun viewBinding(){
-            mBinding = RecyclerSelectAllItemBinding.bind(binding.root)
+            mBinding = RecyclerSelectAllItemBinding.bind(itemView)
         }
 
         init {

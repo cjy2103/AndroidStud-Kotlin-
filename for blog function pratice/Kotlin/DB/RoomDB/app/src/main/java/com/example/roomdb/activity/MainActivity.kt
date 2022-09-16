@@ -16,6 +16,8 @@ class MainActivity : AppCompatActivity() {
         viewBinding()
 
         btnDataInsert()
+
+        btnSelectAll()
     }
 
     private fun viewBinding(){
@@ -26,6 +28,13 @@ class MainActivity : AppCompatActivity() {
     private fun btnDataInsert(){
         binding.btnInsert.setOnClickListener {
             val intent = Intent(this, InsertActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun btnSelectAll(){
+        binding.btnAllSearch.setOnClickListener{
+            val intent = Intent(this, SelectAllActivity::class.java)
             startActivity(intent)
         }
     }
