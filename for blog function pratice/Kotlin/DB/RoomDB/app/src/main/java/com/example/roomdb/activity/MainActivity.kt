@@ -1,9 +1,8 @@
 package com.example.roomdb.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.roomdb.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.roomdb.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +17,8 @@ class MainActivity : AppCompatActivity() {
         btnDataInsert()
 
         btnSelectAll()
+
+        btnSelectById()
     }
 
     private fun viewBinding(){
@@ -38,4 +39,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+    private fun btnSelectById() {
+        binding.btnSelectById.setOnClickListener {
+            val intent = Intent(this, SelectByIdActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
 }

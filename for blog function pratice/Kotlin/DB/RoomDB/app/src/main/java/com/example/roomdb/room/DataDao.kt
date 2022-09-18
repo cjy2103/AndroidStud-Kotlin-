@@ -11,7 +11,7 @@ interface DataDao {
     suspend fun getAll() : List<Data>
 
     @Query("SELECT * FROM Data WHERE title = :title")
-    suspend fun loadById(title: String?) : Data
+    suspend fun loadById(title: String?) : List<Data>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(vararg data: Data?)
