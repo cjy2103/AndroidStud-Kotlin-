@@ -14,6 +14,4 @@ class Data {
     @ColumnInfo
     internal lateinit var msg: String
 
-
-
 }

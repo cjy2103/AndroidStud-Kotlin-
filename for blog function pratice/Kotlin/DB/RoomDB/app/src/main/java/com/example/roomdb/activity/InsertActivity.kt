@@ -33,9 +33,9 @@ class InsertActivity : AppCompatActivity() {
         binding.btnOk.setOnClickListener {
             if(binding.edtTitle.text.toString().isEmpty()){
                 Toast.makeText(this, "Title은 비어있으면 안됩니다.", Toast.LENGTH_SHORT).show()
+            }else {
+                dbInsert()
             }
-
-            dbInsert()
         }
     }
 
