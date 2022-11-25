@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <queries>
-        <package android:name="com.kakaogames.umamusme"/>
+        <package android:name="com.kakaogames.umamusume"/>
         <package android:name="com.nianticlabs.pokemongo"/>
     </queries>
 
