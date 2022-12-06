@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.viewpager2.R
 import com.example.viewpager2.adapter.ViewPager2Adapter
-import com.example.viewpager2.dao.ListItem
-import com.example.viewpager2.dao.ListItemDao
+import com.example.viewpager2.dto.ListItem
+import com.example.viewpager2.dto.ListItemDTO
 import com.example.viewpager2.databinding.ActivityMainBinding
 import com.example.viewpager2.util.SystemUtil
 import com.google.android.material.tabs.TabLayout
@@ -58,14 +58,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addItem(imagePath: String) {
-        val listItemDao = ListItemDao()
-        listItemDao.imagePath = imagePath
+        val listItemDTO = ListItemDTO()
+        listItemDTO.imagePath = imagePath
 
         var listItem = ListItem()
 
-        val items = ArrayList<ListItemDao>()
+        val items = ArrayList<ListItemDTO>()
 
-        items.add(listItemDao)
+        items.add(listItemDTO)
 
         listItem.list = items
 

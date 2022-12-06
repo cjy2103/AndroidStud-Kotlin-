@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.viewpager2.R
-import com.example.viewpager2.dao.ListItem
+import com.example.viewpager2.dto.ListItem
 import com.example.viewpager2.databinding.Viewpager2ItemBinding
 
 class ViewPager2Adapter(private val context : Context, private val activity : Activity,
