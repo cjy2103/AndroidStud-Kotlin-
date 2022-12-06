@@ -1,6 +1,6 @@
-package com.example.roomdb.activity.DAO
+package com.example.roomdb.activity.dto
 
-class DataDAO {
+class DataDTO {
     internal lateinit var title : String
     internal lateinit var msg : String
 }

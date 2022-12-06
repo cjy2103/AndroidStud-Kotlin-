@@ -6,11 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.roomdb.R
-import com.example.roomdb.activity.DAO.DataDAO
+import com.example.roomdb.activity.dto.DataDTO
 import com.example.roomdb.databinding.RecyclerSelectAllItemBinding
-import com.example.roomdb.util.LogUtils
 
-class SelectAllAdapter(private val context : Context, private val list : ArrayList<DataDAO>)
+class SelectAllAdapter(private val context : Context, private val list : ArrayList<DataDTO>)
     : RecyclerView.Adapter<SelectAllAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
