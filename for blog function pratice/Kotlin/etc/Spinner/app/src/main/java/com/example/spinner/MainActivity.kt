@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var spinnerList : Array<String>
     private lateinit var adapter : ArrayAdapter<String>
 
+    private var list : ArrayList<String> = arrayListOf("사과","바나나","망고")
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +33,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init(){
-        spinnerList = resources.getStringArray(R.array.spin_item)
-        adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinnerList)
+//        spinnerList = resources.getStringArray(R.array.spin_item)
+        adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, list)
 
         binding.spinner.adapter = adapter
 
@@ -47,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                binding.tvSelect.text = spinnerList[position]
+                binding.tvSelect.text = list[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
