@@ -7,7 +7,7 @@
     tools:context=".activity.VideoRecordingActivity">
 
     <androidx.camera.view.PreviewView
-        android:id="@+id/preview_viedo"
+        android:id="@+id/preview_video"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_record"
