@@ -1,9 +1,11 @@
 package com.example.camera.model
 
 import android.annotation.SuppressLint
+import android.content.ContentResolver
 import android.content.ContentValues
 import android.content.Context
 import android.provider.MediaStore
+import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.Preview
@@ -66,11 +68,36 @@ class VideoRecordModel(private val videoRecordActivity: VideoRecordActivity,
 
     }
 
+
+
+    @SuppressLint("MissingPermission", "RestrictedApi")
     fun videoStart(){
         val timestamp = System.currentTimeMillis()
         val contentValues = ContentValues()
         contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, timestamp)
         contentValues.put(MediaStore.MediaColumns.MIME_TYPE,"video/mp4")
+
+        videoCapture.startRecording(VideoCapture.OutputFileOptions.Builder(
+              context.contentResolver
+            , MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+            , contentValues
+        ).build()
+        , context.mainExecutor
+        , object : VideoCapture.OnVideoSavedCallback {
+                override fun onVideoSaved(outputFileResults: VideoCapture.OutputFileResults) {
+                    Toast.makeText(context, "동영상이 정상적으로 저장되었습니다.", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onError(videoCaptureError: Int, message: String, cause: Throwable?) {
+                    Toast.makeText(
+                        context, "사진 저장에 실패했습니다 사유 : " +
+                                message, Toast.LENGTH_SHORT
+                    ).show()
+                }
+        }
+
+        )
+
     }
 
     @SuppressLint("RestrictedApi")

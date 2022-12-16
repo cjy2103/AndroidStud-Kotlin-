@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         viewBinding()
         init()
         clickPicture()
+        clickVideo()
     }
 
     private fun viewBinding(){
@@ -31,6 +32,12 @@ class MainActivity : AppCompatActivity() {
     private fun clickPicture(){
         binding.btnPicture.setOnClickListener {
             mainModel.cameraPerMissionCheck()
+        }
+    }
+
+    private fun clickVideo(){
+        binding.btnVideo.setOnClickListener {
+            mainModel.videoPerMissionCheck()
         }
     }
 

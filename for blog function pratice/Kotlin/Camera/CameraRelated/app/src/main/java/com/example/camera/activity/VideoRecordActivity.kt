@@ -6,6 +6,7 @@ import androidx.camera.core.Preview
 import com.example.bottomnavigation.util.SystemUtil
 import com.example.camera.databinding.ActivityVideoRecordingBinding
 import com.example.camera.model.VideoRecordModel
+import com.example.roomdb.util.LogUtils
 
 class VideoRecordActivity : AppCompatActivity() {
 
@@ -18,6 +19,7 @@ class VideoRecordActivity : AppCompatActivity() {
         viewBinding()
         init()
         clickVideo()
+        clickCancel()
     }
 
     private fun viewBinding(){
@@ -36,7 +38,7 @@ class VideoRecordActivity : AppCompatActivity() {
     }
 
     private fun clickVideo(){
-        binding.btnRecord.setOnClickListener(){
+        binding.btnRecord.setOnClickListener {
             if(binding.btnRecord.text.toString().equals("비디오 촬영")){
                 binding.btnRecord.text = "비디오 촬영 종료"
                 videoRecordModel.videoStart()
@@ -44,6 +46,12 @@ class VideoRecordActivity : AppCompatActivity() {
                 binding.btnRecord.text = "비디오 촬영"
                 videoRecordModel.stop()
             }
+        }
+    }
+
+    private fun clickCancel(){
+        binding.btnCancel.setOnClickListener {
+            finish()
         }
     }
 }
