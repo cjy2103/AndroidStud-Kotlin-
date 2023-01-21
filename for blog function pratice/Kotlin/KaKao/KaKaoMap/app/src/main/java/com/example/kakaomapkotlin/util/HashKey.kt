@@ -1,11 +1,11 @@
-package com.example.kakaomap.util
+package com.example.kakaomapkotlin.util
 
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.util.Base64
 import android.util.Log
-import com.example.kakaomap.BuildConfig
+import com.example.kakaomapkotlin.BuildConfig
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 

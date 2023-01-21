@@ -1,7 +1,8 @@
-package com.example.kakaomap.util
+package com.example.kakaomapkotlin.util
 
 import android.util.Log
-import com.example.kakaomap.BuildConfig
+import com.example.kakaomapkotlin.BuildConfig
+
 
 class LogUtil {
     companion object{

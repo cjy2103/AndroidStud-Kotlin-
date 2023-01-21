@@ -1,4 +1,4 @@
-package com.example.kakaomap
+package com.example.kakaomapkotlin
 
 import org.junit.Test
 
