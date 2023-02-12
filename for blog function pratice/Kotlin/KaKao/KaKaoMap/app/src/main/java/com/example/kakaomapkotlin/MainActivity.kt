@@ -15,8 +15,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBinding()
-        val hashKey = HashKey()
-        hashKey.migrateSignatures(this)
+//        val hashKey = HashKey()
+//        hashKey.migrateSignatures(this)
     }
 
     private fun dataBinding(){
