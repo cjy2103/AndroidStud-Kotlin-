@@ -15,6 +15,8 @@ class MainViewModel {
     private val str : MutableLiveData<String> = MutableLiveData()
     private lateinit var resultLauncher : ActivityResultLauncher<Intent>
 
+    fun getStr() = str
+
     fun init(context : Context){
         val activity = context as AppCompatActivity
         callback(activity)
