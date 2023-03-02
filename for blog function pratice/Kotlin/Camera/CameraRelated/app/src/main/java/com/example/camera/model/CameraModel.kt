@@ -45,8 +45,12 @@ class CameraModel(private val cameraActivity: CameraActivity, private val contex
     private fun startCameraX(cameraProvider: ProcessCameraProvider) {
         cameraProvider.unbindAll() // 열려있는 모든 카메라 닫기
 
+//        val cameraSelector = CameraSelector.Builder()
+//            .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+//            .build()
+
         val cameraSelector = CameraSelector.Builder()
-            .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+            .requireLensFacing(CameraSelector.LENS_FACING_FRONT)
             .build()
 
         val preview = Preview.Builder().build()
