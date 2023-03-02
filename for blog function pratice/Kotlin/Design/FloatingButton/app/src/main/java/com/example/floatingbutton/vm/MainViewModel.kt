@@ -14,10 +14,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 class MainViewModel {
 
     private var fabJazzAnimation = MutableLiveData<Animation>()
-    get() = fabJazzAnimation
+    fun getFapJazzAnimation() = fabJazzAnimation
 
     private var fabDiyapAnimation = MutableLiveData<Animation>()
-    get() = fabDiyapAnimation
+    fun getFabDiyapAnimation() = fabDiyapAnimation
 
 
     private lateinit var fabOpen : Animation

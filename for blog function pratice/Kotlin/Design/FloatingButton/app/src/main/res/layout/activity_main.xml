@@ -41,6 +41,8 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:clickable="true"
+        android:onAnimationStart="@{viewModel.fabDiyapAnimation}"
+        android:onClick="@{(v) -> viewModel.clickFab(v)}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:backgroundTint="#ACF6FF"
@@ -54,6 +56,8 @@
         android:clickable="true"
         android:visibility="invisible"
         app:backgroundTint="#41A9FB"
+        android:onAnimationStart="@{viewModel.fapJazzAnimation}"
+        android:onClick="@{(v) -> viewModel.clickFabJazz(v)}"
         app:layout_constraintBottom_toTopOf="@+id/fab"
         app:layout_constraintEnd_toEndOf="@+id/fab"
         app:srcCompat="@drawable/uma_jazz" />
@@ -66,6 +70,7 @@
         android:visibility="invisible"
         android:clickable="true"
         app:backgroundTint="#41A9FB"
+        android:onClick="@{(v) -> viewModel.clickFabDiyap(v)"
         app:layout_constraintBottom_toTopOf="@+id/fab_jazz"
         app:layout_constraintEnd_toEndOf="@+id/fab_jazz"
         app:srcCompat="@drawable/uma_diyap" />
