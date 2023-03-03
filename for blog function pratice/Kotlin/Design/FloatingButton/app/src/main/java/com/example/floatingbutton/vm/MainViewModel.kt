@@ -7,17 +7,18 @@ import android.graphics.Color
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.floatingbutton.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainViewModel {
 
-    private var fabJazzAnimation = MutableLiveData<Animation>()
-    fun getFapJazzAnimation() = fabJazzAnimation
+    var fabJazzAnimation = MutableLiveData<Animation>()
 
-    private var fabDiyapAnimation = MutableLiveData<Animation>()
-    fun getFabDiyapAnimation() = fabDiyapAnimation
+
+    var fabDiyapAnimation = MutableLiveData<Animation>()
+
 
 
     private lateinit var fabOpen : Animation
