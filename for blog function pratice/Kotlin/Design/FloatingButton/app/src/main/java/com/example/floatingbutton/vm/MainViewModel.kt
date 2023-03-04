@@ -14,19 +14,18 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainViewModel {
 
-    var fabJazzAnimation = MutableLiveData<Animation>()
+    private var fabJazzAnimation = MutableLiveData<Animation>()
+    fun getFabJazzAnimation() = fabJazzAnimation
 
-
-    var fabDiyapAnimation = MutableLiveData<Animation>()
-
-
+    private var fabDiyapAnimation = MutableLiveData<Animation>()
+    fun getDiyapAnimation() = fabDiyapAnimation
 
     private lateinit var fabOpen : Animation
     private lateinit var fabClose : Animation
 
     private var isFapOpen = false
 
-    private fun init(context: Context){
+    fun init(context: Context){
         fabOpen = AnimationUtils.loadAnimation(context, R.anim.fab_open)
         fabClose = AnimationUtils.loadAnimation(context, R.anim.fab_close)
     }
@@ -48,13 +47,13 @@ class MainViewModel {
     private fun animation(fabView: FloatingActionButton) {
         if(isFapOpen){
             ObjectAnimator.ofFloat(fabView, View.ROTATION, 45f,0f).start()
-            fabView.backgroundTintList = ColorStateList.valueOf(Color.parseColor("ACF6FF"))
+            fabView.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#ACF6FF"))
             fabJazzAnimation.value = fabClose
             fabDiyapAnimation.value = fabClose
             isFapOpen = false
         } else {
             ObjectAnimator.ofFloat(fabView, View.ROTATION, 0f, 45f).start()
-            fabView.backgroundTintList = ColorStateList.valueOf(Color.parseColor("41A9FB"))
+            fabView.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#41A9FB"))
             fabJazzAnimation.value = fabOpen
             fabDiyapAnimation.value = fabOpen
             isFapOpen = true
