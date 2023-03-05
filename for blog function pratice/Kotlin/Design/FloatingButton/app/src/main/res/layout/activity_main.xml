@@ -70,10 +70,12 @@
         android:visibility="invisible"
         android:clickable="true"
         app:backgroundTint="#41A9FB"
-        android:onClick="@{(v) -> viewModel.clickFabDiyap(v)"
+        android:onClick="@{() -> viewModel.clickFabDiyap(fab)}"
         app:layout_constraintBottom_toTopOf="@+id/fab_jazz"
         app:layout_constraintEnd_toEndOf="@+id/fab_jazz"
-        app:srcCompat="@drawable/uma_diyap" />
+        app:srcCompat="@drawable/uma_diyap"
+        app:animationStart="@{viewModel.fabDiyapAnimation}"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

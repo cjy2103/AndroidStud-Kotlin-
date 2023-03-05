@@ -17,6 +17,9 @@ class MainViewModel {
     private var fabJazzAnimation = MutableLiveData<Animation>()
     fun getFabJazzAnimation() = fabJazzAnimation
 
+    private var fabDiyapAnimation = MutableLiveData<Animation>()
+    fun getFabDiyapAnimation() = fabDiyapAnimation
+
     private lateinit var fabOpen : Animation
     private lateinit var fabClose : Animation
 
@@ -25,8 +28,6 @@ class MainViewModel {
     fun init(context: Context){
         fabOpen = AnimationUtils.loadAnimation(context, R.anim.fab_open)
         fabClose = AnimationUtils.loadAnimation(context, R.anim.fab_close)
-
-        fabJazzAnimation.value = fabClose
     }
 
     fun clickFab(fabView : FloatingActionButton){
@@ -48,11 +49,13 @@ class MainViewModel {
             ObjectAnimator.ofFloat(fabView, View.ROTATION, 45f,0f).start()
             fabView.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFACF6FF"))
             fabJazzAnimation.value = fabClose
+            fabDiyapAnimation.value = fabClose
             isFapOpen = false
         } else {
             ObjectAnimator.ofFloat(fabView, View.ROTATION, 0f, 45f).start()
             fabView.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FF41A9FB"))
             fabJazzAnimation.value = fabOpen
+            fabDiyapAnimation.value = fabOpen
             isFapOpen = true
         }
     }
@@ -60,8 +63,8 @@ class MainViewModel {
     companion object{
         @BindingAdapter("animationStart")
         @JvmStatic
-        fun fabJazzAnimation(fabView : FloatingActionButton, animation: MutableLiveData<Animation>){
-            fabView.startAnimation(animation.value)
+        fun setFabAnimation(fabView : FloatingActionButton, animation: MutableLiveData<Animation>){
+            animation.value?.let { fabView.startAnimation(it) }
         }
     }
 
