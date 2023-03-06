@@ -7,6 +7,8 @@ import android.graphics.Color
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import com.example.floatingbutton.R
@@ -19,6 +21,9 @@ class MainViewModel {
 
     private var fabDiyapAnimation = MutableLiveData<Animation>()
     fun getFabDiyapAnimation() = fabDiyapAnimation
+
+    private var imageData = MutableLiveData<Int>()
+    fun getImage() = imageData
 
     private lateinit var fabOpen : Animation
     private lateinit var fabClose : Animation
@@ -36,12 +41,12 @@ class MainViewModel {
 
     fun clickFabJazz(fabView : FloatingActionButton){
         animation(fabView)
-        fabView.setImageResource(R.drawable.uma_jazz)
+        imageData.value = R.drawable.uma_jazz
     }
 
     fun clickFabDiyap(fabView : FloatingActionButton){
         animation(fabView)
-        fabView.setImageResource(R.drawable.uma_diyap)
+        imageData.value = R.drawable.uma_diyap
     }
 
     private fun animation(fabView: FloatingActionButton) {
@@ -65,6 +70,15 @@ class MainViewModel {
         @JvmStatic
         fun setFabAnimation(fabView : FloatingActionButton, animation: MutableLiveData<Animation>){
             animation.value?.let { fabView.startAnimation(it) }
+        }
+
+        @BindingAdapter("imageSet")
+        @JvmStatic
+        fun setImage(view : ImageView, image : MutableLiveData<Int>){
+            image.value?.let {
+                val drawable = ContextCompat.getDrawable(view.context, it)
+                view.setImageDrawable(drawable)
+            }
         }
     }
 
