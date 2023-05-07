@@ -21,6 +21,9 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".activity.PhotoResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.VideoRecordActivity"
             android:exported="false">
             <meta-data

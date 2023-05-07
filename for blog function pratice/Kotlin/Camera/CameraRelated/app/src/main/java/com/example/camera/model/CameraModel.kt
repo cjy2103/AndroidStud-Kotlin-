@@ -2,6 +2,7 @@ package com.example.camera.model
 
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
 import android.media.MediaActionSound
 import android.os.Handler
 import android.os.Looper
@@ -12,9 +13,10 @@ import androidx.camera.core.ImageCapture.OutputFileOptions
 import androidx.camera.core.ImageCapture.OutputFileResults
 import androidx.camera.lifecycle.ProcessCameraProvider
 import com.example.camera.activity.CameraActivity
-import com.example.roomdb.util.LogUtils
+import com.example.camera.activity.PhotoResultActivity
 import com.google.common.util.concurrent.ListenableFuture
 import java.util.concurrent.ExecutionException
+
 
 class CameraModel(private val cameraActivity: CameraActivity, private val context: Context) {
 
@@ -45,13 +47,13 @@ class CameraModel(private val cameraActivity: CameraActivity, private val contex
     private fun startCameraX(cameraProvider: ProcessCameraProvider) {
         cameraProvider.unbindAll() // 열려있는 모든 카메라 닫기
 
-//        val cameraSelector = CameraSelector.Builder()
-//            .requireLensFacing(CameraSelector.LENS_FACING_BACK)
-//            .build()
-
         val cameraSelector = CameraSelector.Builder()
-            .requireLensFacing(CameraSelector.LENS_FACING_FRONT)
+            .requireLensFacing(CameraSelector.LENS_FACING_BACK)
             .build()
+//
+//        val cameraSelector = CameraSelector.Builder()
+//            .requireLensFacing(CameraSelector.LENS_FACING_FRONT)
+//            .build()
 
         val preview = Preview.Builder().build()
 
@@ -83,6 +85,13 @@ class CameraModel(private val cameraActivity: CameraActivity, private val contex
                     cameraActivity.runOnUiThread {
                         Handler(Looper.myLooper()!!).postDelayed({
                             cam.cameraControl.enableTorch(false)
+                            val intent = Intent(
+                                context,
+                                PhotoResultActivity::class.java
+                            )
+                            intent.putExtra("photoUri", outputFileResults.savedUri.toString())
+                            context.startActivity(intent)
+
                         }, 100)
                     }
                 }
