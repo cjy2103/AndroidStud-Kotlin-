@@ -27,13 +27,36 @@
         app:layout_constraintStart_toStartOf="@+id/tv_value"
         app:layout_constraintTop_toBottomOf="@+id/tv_value" />
 
+
+    <Button
+        android:id="@+id/btn_socket_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="소켓생성"
+        app:layout_constraintEnd_toEndOf="@+id/tv_value"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="@+id/tv_value"
+        app:layout_constraintTop_toBottomOf="@+id/btn_pairing" />
+
+
     <Button
         android:id="@+id/btn_trans"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="연결"
+        android:text="메시지전달"
         app:layout_constraintEnd_toEndOf="@+id/tv_value"
         app:layout_constraintStart_toStartOf="@+id/tv_value"
-        app:layout_constraintTop_toBottomOf="@+id/btn_pairing" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_socket_create" />
+
+    <Button
+        android:id="@+id/btn_socket_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="소켓 끊기"
+        app:layout_constraintEnd_toEndOf="@+id/tv_value"
+        app:layout_constraintStart_toStartOf="@+id/tv_value"
+        app:layout_constraintTop_toBottomOf="@+id/btn_trans" />
 </androidx.constraintlayout.widget.ConstraintLayout>
