@@ -39,6 +39,8 @@ class MainActivity : AppCompatActivity() {
 
         bleSocketCreate()
 
+        bleTrans()
+
         bleSocketClose()
     }
 
@@ -103,6 +105,31 @@ class MainActivity : AppCompatActivity() {
         } catch (e: IOException) {
             Log.e(TAG, "Error occurred while connecting to socket.", e)
             return
+        }
+    }
+
+    private fun bleTrans(){
+        binding.btnTrans.setOnClickListener {
+            sendMsg()
+        }
+    }
+
+    private fun sendMsg(){
+        // 연결이 성공적으로 이루어졌으면, 데이터를 전송합니다.
+        try {
+            val message = "Hello, BLE Device!"
+            val bytes = message.toByteArray()
+            outputStream?.write(bytes)
+            Log.i(TAG, "Message sent.")
+        } catch (e: IOException) {
+            Log.e(TAG, "Error occurred while sending data.", e)
+        } finally {
+            try {
+
+            } catch (e: IOException) {
+                Log.e(TAG, "Error occurred while closing socket.", e)
+                socket.close()
+            }
         }
     }
 
