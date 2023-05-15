@@ -5,6 +5,3 @@ BLE Classic 소켓 생성, 끊기 ( v )
 코루틴 (코루틴 빌더, 코루틴 스코프) ( v )
 DataStore 이란? ( v )
 
-
-=========== 오류 ==============
-BLE 오류 - java.io.IOException: read failed, socket might closed or timeout, read ret: -1 ( v )
