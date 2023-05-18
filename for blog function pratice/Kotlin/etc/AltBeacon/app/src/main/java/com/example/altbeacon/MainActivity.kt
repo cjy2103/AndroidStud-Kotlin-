@@ -1,13 +1,18 @@
 package com.example.altbeacon
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.ServiceConnection
 import android.os.Bundle
+import android.os.IBinder
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.example.altbeacon.databinding.ActivityMainBinding
 import org.altbeacon.beacon.BeaconManager
-
 import org.altbeacon.beacon.BeaconParser
 import org.altbeacon.beacon.Region
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,12 +27,12 @@ class MainActivity : AppCompatActivity() {
     private val targetMinor = "Minor ID 쓰세요"
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding()
-        init()
-        beaconSearch()
+
+//        init()
+//        beaconSearch()
     }
 
     private fun viewBinding() {
@@ -59,8 +64,6 @@ class MainActivity : AppCompatActivity() {
                                 TAG,
                                 "비콘 감지: $beaconUuid, $beaconMajor, $beaconMinor"
                             )
-                            // Perform additional actions when the target beacon is found
-                            // ...
                         }
                     }
                 }
@@ -72,8 +75,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        beaconManager.stopRangingBeacons(beaconRegion)
-        beaconManager.removeAllRangeNotifiers()
+//        beaconManager.stopRangingBeacons(beaconRegion)
+//        beaconManager.removeAllRangeNotifiers()
+
     }
 
 }
