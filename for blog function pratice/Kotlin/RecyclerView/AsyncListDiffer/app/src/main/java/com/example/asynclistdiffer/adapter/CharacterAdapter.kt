@@ -11,7 +11,7 @@ import com.example.asynclistdiffer.databinding.RecyclerViewListBinding
 import com.example.asynclistdiffer.util.DiffUtilCallback
 
 
-class CharacterAdapter(private val list: ArrayList<Character>) : RecyclerView.Adapter<CharacterAdapter.ViewHolder>() {
+class CharacterAdapter(list: ArrayList<Character>) : RecyclerView.Adapter<CharacterAdapter.ViewHolder>() {
 
     private val asyncListDiffer: AsyncListDiffer<Character> =
         AsyncListDiffer(this, DiffUtilCallback())
