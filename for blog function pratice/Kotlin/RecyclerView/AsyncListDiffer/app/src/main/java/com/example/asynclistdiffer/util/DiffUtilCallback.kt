@@ -1,24 +1,18 @@
 package com.example.asynclistdiffer.util
 
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
 import com.example.asynclistdiffer.data.Character
 
-class DiffUtilCallback(private val oldList: ArrayList<Character>, private val newList: ArrayList<Character>) : DiffUtil.Callback() {
-
-    override fun getOldListSize(): Int {
-        return oldList.size
+class DiffUtilCallback : DiffUtil.ItemCallback<Character>() {
+    override fun areItemsTheSame(oldItem: Character, newItem: Character): Boolean {
+        return oldItem.title == newItem.title
     }
 
-    override fun getNewListSize(): Int {
-        return newList.size
+    @SuppressLint("DiffUtilEquals")
+    override fun areContentsTheSame(oldItem: Character, newItem: Character): Boolean {
+        return oldItem === newItem
     }
 
-    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].title == newList[newItemPosition].title
-    }
-
-    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].describe == newList[newItemPosition].describe
-    }
 
 }
