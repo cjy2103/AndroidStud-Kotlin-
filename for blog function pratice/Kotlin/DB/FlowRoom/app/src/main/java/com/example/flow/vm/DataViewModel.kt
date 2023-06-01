@@ -14,29 +14,27 @@ import kotlinx.coroutines.launch
 
 class DataViewModel(application: Application) : AndroidViewModel(application) {
     private val dataDao : DataDao
-    private val dataFlow : Flow<List<Data>>
+    private val allCharacter : Flow<List<Data>>
 
     private val _dataList = MutableStateFlow<List<Data>>(emptyList())
     val dataList: StateFlow<List<Data>> get() = _dataList
 
     init {
-        val database = Room.databaseBuilder(
-            application,
-            CharacterDataBase::class.java,
-            "data_database"
-        ).build()
+        val database = CharacterDataBase.getInstance(application)
 
         dataDao = database.dataDao()
-        dataFlow = dataDao.getAllData()
-        observeData()
+        allCharacter = dataDao.getAllData()
     }
 
-    private fun observeData() {
-        viewModelScope.launch {
-            dataFlow.collect { data ->
-                _dataList.emit(data)
-            }
-        }
+    
+
+
+    private fun listAdd(){
+
+    }
+
+    private fun deleteItem(){
+
     }
     
 }
