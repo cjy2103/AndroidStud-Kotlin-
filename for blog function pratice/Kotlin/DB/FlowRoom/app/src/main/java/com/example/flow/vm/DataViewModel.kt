@@ -1,4 +1,4 @@
-package com.example.flow
+package com.example.flow.vm
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.room.Room
 import com.example.flow.room.Data
 import com.example.flow.room.DataDao
-import com.example.flow.room.RoomDataBase
+import com.example.flow.room.CharacterDataBase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -22,7 +22,7 @@ class DataViewModel(application: Application) : AndroidViewModel(application) {
     init {
         val database = Room.databaseBuilder(
             application,
-            RoomDataBase::class.java,
+            CharacterDataBase::class.java,
             "data_database"
         ).build()
 

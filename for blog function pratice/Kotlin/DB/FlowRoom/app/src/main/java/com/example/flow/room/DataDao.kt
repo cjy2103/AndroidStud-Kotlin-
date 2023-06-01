@@ -2,6 +2,7 @@ package com.example.flow.room
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
@@ -9,6 +10,6 @@ import kotlinx.coroutines.flow.Flow
 interface DataDao {
     @Query("SELECT * FROM DATA")
     fun getAllData() : Flow<List<Data>>
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertData(data: Data)
 }
