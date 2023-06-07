@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class Data(
     @PrimaryKey val name : String ,
     val describe : String,
-    val imagePath : Int
+    val imagePath : String
 )

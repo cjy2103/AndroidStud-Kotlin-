@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.room.Room
+import com.example.flow.R
 import com.example.flow.data.Character
 import com.example.flow.data.CharacterProvider
 import com.example.flow.room.Data
@@ -30,12 +31,20 @@ class DataViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun listAdd(){
         viewModelScope.launch {
-
+            insertData(R.string.baknana, R.string.bak_describe)
+            insertData(R.string.djmax, R.string.djmax_describe)
+            insertData(R.string.djmax_falling_love, R.string.djmax_falling_love_describe)
+            insertData(R.string.baknana, R.string.bak_describe)
+            insertData(R.string.baknana, R.string.bak_describe)
         }
     }
 
-    private suspend fun insertData(title: String, describe: String, image: Int) {
-        val character = Data(title, describe, image)
+    private suspend fun insertData(_title: Int, _describe: Int) {
+        val title = getApplication<Application>().getString(_title)
+        val describe = getApplication<Application>().getString(_describe)
+        val key = getApplication<Application>().getString(_title)
+
+        val character = Data(title, describe, key)
         dataDao.insertData(character)
     }
 
