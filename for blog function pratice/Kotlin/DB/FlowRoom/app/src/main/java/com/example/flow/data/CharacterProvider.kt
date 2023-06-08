@@ -20,8 +20,8 @@ class CharacterProvider {
     }
 
     private fun addItem(title: Int, describe: Int, image: Int) {
-        val character = Character(title,describe,image)
-        list.add(character)
+//        val character = Character(title,describe,image)
+//        list.add(character)
     }
 
     fun clickBtnAdd() {

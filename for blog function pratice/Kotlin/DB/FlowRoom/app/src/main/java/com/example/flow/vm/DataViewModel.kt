@@ -14,19 +14,40 @@ import com.example.flow.room.CharacterDataBase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class DataViewModel(application: Application) : AndroidViewModel(application) {
     private val dataDao : DataDao
-    private val allCharacter : Flow<List<Data>>
+    private val allCharacter : Flow<List<Character>>
 
-    private val _dataList = MutableStateFlow<List<Data>>(emptyList())
-    val dataList: StateFlow<List<Data>> get() = _dataList
+    private val _dataList = MutableStateFlow<List<Character>>(emptyList())
+    val dataList : StateFlow<List<Character>> get() = _dataList
 
     init {
         val database = CharacterDataBase.getInstance(application)
         dataDao = database.dataDao()
-        allCharacter = dataDao.getAllData()
+
+        allCharacter = dataDao.getAllData().map { dataList ->
+            dataList.map { convertDataToCharacter(it) }
+        }
+
+        viewModelScope.launch{
+            allCharacter.collect { newDataList ->
+                _dataList.value = newDataList
+            }
+        }
+
+
+    }
+
+    private fun convertDataToCharacter(data: Data): Character {
+        return Character(
+            title = data.name,
+            describe = data.describe,
+            imageKey = data.imagePath
+        )
     }
 
     fun listAdd(){

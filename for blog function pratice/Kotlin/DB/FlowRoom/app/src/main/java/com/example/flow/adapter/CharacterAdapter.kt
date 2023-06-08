@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.flow.R
 import com.example.flow.data.Character
 import com.example.flow.databinding.RecyclerViewListBinding
-import com.example.listadapter.util.DiffUtilCallback
+import com.example.flow.util.DiffUtilCallback
 
 
 class CharacterAdapter : ListAdapter<Character,CharacterAdapter.ViewHolder>(DiffUtilCallback()) {

@@ -1,4 +1,4 @@
-package com.example.listadapter.util
+package com.example.flow.util
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
