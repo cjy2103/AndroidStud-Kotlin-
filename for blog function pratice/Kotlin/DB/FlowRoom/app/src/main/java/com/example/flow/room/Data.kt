@@ -5,7 +5,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "DATA")
 data class Data(
-    @PrimaryKey val name : String ,
+    @PrimaryKey(autoGenerate = true)
+    val id : Int = 0 ,
+    val name : String ,
     val describe : String,
     val imagePath : String
 )

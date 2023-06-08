@@ -1,6 +1,7 @@
 package com.example.flow.vm
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.room.Room
@@ -18,7 +19,6 @@ import kotlinx.coroutines.launch
 class DataViewModel(application: Application) : AndroidViewModel(application) {
     private val dataDao : DataDao
     private val allCharacter : Flow<List<Data>>
-    private val characterProvider = CharacterProvider()
 
     private val _dataList = MutableStateFlow<List<Data>>(emptyList())
     val dataList: StateFlow<List<Data>> get() = _dataList
@@ -29,13 +29,13 @@ class DataViewModel(application: Application) : AndroidViewModel(application) {
         allCharacter = dataDao.getAllData()
     }
 
-    private fun listAdd(){
+    fun listAdd(){
         viewModelScope.launch {
             insertData(R.string.baknana, R.string.bak_describe)
             insertData(R.string.djmax, R.string.djmax_describe)
             insertData(R.string.djmax_falling_love, R.string.djmax_falling_love_describe)
-            insertData(R.string.baknana, R.string.bak_describe)
-            insertData(R.string.baknana, R.string.bak_describe)
+            insertData(R.string.mwamwa, R.string.mwamwa_describe)
+            insertData(R.string.tamtam, R.string.tamtam_describe)
         }
     }
 
@@ -44,12 +44,14 @@ class DataViewModel(application: Application) : AndroidViewModel(application) {
         val describe = getApplication<Application>().getString(_describe)
         val key = getApplication<Application>().getString(_title)
 
-        val character = Data(title, describe, key)
+        val character = Data(0,title, describe, key)
         dataDao.insertData(character)
     }
 
-    private fun deleteItem(){
-
+    fun deleteItem(){
+        viewModelScope.launch {
+            dataDao.deleteData()
+        }
     }
     
 }
