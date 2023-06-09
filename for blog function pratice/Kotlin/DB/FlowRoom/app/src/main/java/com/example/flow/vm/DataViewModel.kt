@@ -1,20 +1,16 @@
 package com.example.flow.vm
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.room.Room
 import com.example.flow.R
 import com.example.flow.data.Character
-import com.example.flow.data.CharacterProvider
 import com.example.flow.room.Data
 import com.example.flow.room.DataDao
 import com.example.flow.room.CharacterDataBase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 

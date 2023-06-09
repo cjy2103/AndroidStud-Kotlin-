@@ -11,8 +11,9 @@ class DiffUtilCallback : DiffUtil.ItemCallback<Character>() {
 
     @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(oldItem: Character, newItem: Character): Boolean {
-        return oldItem === newItem
+        return oldItem.title == newItem.title &&
+                oldItem.describe == newItem.describe &&
+                oldItem.imageKey == newItem.imageKey
     }
-
 
 }
