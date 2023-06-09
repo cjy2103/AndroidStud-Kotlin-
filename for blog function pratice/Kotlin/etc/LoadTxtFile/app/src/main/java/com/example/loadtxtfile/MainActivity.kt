@@ -4,6 +4,7 @@ import android.content.res.AssetManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.loadtxtfile.databinding.ActivityMainBinding
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,7 +15,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         viewBinding()
 
-        fileRead()
+        fileReadString()
+
+        fileReadArray()
     }
 
     private fun viewBinding(){
@@ -22,11 +25,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    private fun fileRead(){
+    private fun fileReadString(){
         val assetManager: AssetManager = assets
         val fileName = "sample.txt"
 
         val fileContent = FileReader.readTextFileString(assetManager, fileName)
         binding.tvWord.text = fileContent
+    }
+
+    private fun fileReadArray(){
+        val assetManager: AssetManager = assets
+        val fileName = "sample2.txt"
+
+        val (nameArray, moneyArray) = FileReader.readTextFileArray(assetManager, fileName)
+
+        binding.tvName.text = nameArray[2]
+        binding.tvMoney.text = moneyArray[2]
+
     }
 }

@@ -24,7 +24,30 @@ class FileReader {
         }
 
         fun readTextFileArray(assetManager: AssetManager, fileName : String): Pair<Array<String>, Array<String>>{
-            
+            val nameList = mutableListOf<String>()
+            val moneyList = mutableListOf<String>()
+
+            try {
+                val inputStream = assetManager.open(fileName)
+                val reader = BufferedReader(InputStreamReader(inputStream))
+
+                var line: String?
+                while (reader.readLine().also { line = it } != null){
+                    val parts = line!!.split(" ")
+                    if(parts.size == 2){
+                        val name = parts[0]
+                        var money = parts[1]
+                        nameList.add(name)
+                        moneyList.add(money)
+                    }
+                }
+
+                reader.close()
+
+            } catch (e : IOException){
+                e.printStackTrace()
+            }
+            return Pair(nameList.toTypedArray(), moneyList.toTypedArray())
         }
     }
 }
