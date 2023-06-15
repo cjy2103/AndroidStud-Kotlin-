@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import com.example.processbar.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -34,20 +35,23 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun caseThread(){
         binding.tvState.text = "Loading"
-        val totalDuration = 3000 // 총 길이는 5초 (5000ms)
+        val totalDuration = 11000 // 총 길이는 5초 (5000ms)
         val interval = 100 // 게이지를 업데이트할 간격 (100ms)
-        val progressIncrement = 100 / (totalDuration / interval) // 각 간격마다 증가할 게이지 비율
+
         val maxProgress = 100
 
+        val progressIncrement = 100.0 / (totalDuration.toDouble() / interval.toDouble())
+
+
         val handler = Handler(Looper.myLooper()!!)
-        var progress = 0
+        var progress = 0.0
 
         // 일정 간격으로 게이지 업데이트
         val runnable: Runnable = object : Runnable {
             @SuppressLint("SetTextI18n")
             override fun run() {
                 progress += progressIncrement
-                binding.progressBar.progress = progress
+                binding.progressBar.progress = progress.toInt()
 
                 var percent = (progress.toDouble() / maxProgress * 100).toInt()
                 if(percent > 100){
