@@ -20,3 +20,5 @@ AsyncListDiffer ( v )
 ListAdapter ( v )
 
 PendingIntent ( v )
+
+ProgressBar ( v )
