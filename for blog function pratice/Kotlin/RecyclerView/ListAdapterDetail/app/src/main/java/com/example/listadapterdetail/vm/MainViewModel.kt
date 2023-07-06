@@ -2,10 +2,11 @@ package com.example.listadapterdetail.vm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.listadapterdetail.data.CharacterProvider
 import com.example.listadapterdetail.data.Character
 
-class MainViewModel {
+class MainViewModel : ViewModel(){
 
     private val provider: CharacterProvider = CharacterProvider()
     private val characterList: MutableLiveData<ArrayList<Character>> = provider.getCharacterList()!!

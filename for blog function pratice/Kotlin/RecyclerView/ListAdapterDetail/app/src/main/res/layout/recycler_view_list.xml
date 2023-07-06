@@ -7,14 +7,6 @@
         <import type="androidx.core.content.ContextCompat"/>
 
         <variable
-            name="dataList"
-            type="java.util.List&lt;com.example.listadapterdetail.data.Character&gt;"/>
-
-        <variable
-            name="position"
-            type="Integer" />
-
-        <variable
             name="character"
             type="com.example.listadapterdetail.data.Character" />
     </data>
