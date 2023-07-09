@@ -7,6 +7,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.listadapterdetail.R
+import com.example.listadapterdetail.data.Character
+import com.example.listadapterdetail.data.ParcelCharacter
 import com.example.listadapterdetail.databinding.ActivityMainBinding
 import com.example.listadapterdetail.vm.DetailViewModel
 import com.example.listadapterdetail.vm.MainViewModel
@@ -34,10 +36,12 @@ class MainActivity : AppCompatActivity() {
     private fun characterListClick(){
         mainViewModel.characterClickListener.observe(this) {
             val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra("title", it.title)
-            intent.putExtra("describe", it.describe)
-            intent.putExtra("image", it.image)
-            intent.putExtra("youtube", it.youtubeLink)
+//            intent.putExtra("title", it.title)
+//            intent.putExtra("describe", it.describe)
+//            intent.putExtra("image", it.image)
+//            intent.putExtra("youtube", it.youtubeLink)
+            val character = ParcelCharacter(it.title, it.describe, it.image, it.youtubeLink)
+            intent.putExtra("character", character)
             startActivity(intent)
         }
     }
