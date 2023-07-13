@@ -1,22 +1,25 @@
 package com.example.camera.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.Preview
-import com.example.bottomnavigation.util.SystemUtil
 import com.example.camera.databinding.ActivityCameraBinding
 import com.example.camera.model.CameraModel
 
-class CameraActivity : AppCompatActivity() {
+class CameraActivity : BaseActivity<ActivityCameraBinding>(ActivityCameraBinding::inflate) {
 
-    private var mBinding : ActivityCameraBinding? = null
-    private val binding get() = mBinding!!
+//    private var mBinding : ActivityCameraBinding? = null
+//    private val binding get() = mBinding!!
+
+//    override fun createBinding(): ActivityCameraBinding {
+//        return ActivityCameraBinding.inflate(layoutInflater)
+//    }
 
     private lateinit var cameraModel : CameraModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewBinding()
+//        viewBinding()
         init()
         clickPhoto()
         clickCancel()
@@ -28,13 +31,13 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun viewBinding(){
-        mBinding = ActivityCameraBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+//        mBinding = ActivityCameraBinding.inflate(layoutInflater)
+//        setContentView(binding.root)
     }
 
     private fun init(){
-        SystemUtil.statusbarSetting(window)
-        SystemUtil.sofNavigationBarHide(window)
+//        SystemUtil.statusbarSetting(window)
+//        SystemUtil.sofNavigationBarHide(window)
 
         cameraModel = CameraModel(this, this)
     }

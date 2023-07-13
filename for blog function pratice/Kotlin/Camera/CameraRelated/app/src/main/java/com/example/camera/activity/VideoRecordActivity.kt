@@ -8,23 +8,15 @@ import com.example.camera.databinding.ActivityVideoRecordingBinding
 import com.example.camera.model.VideoRecordModel
 import com.example.roomdb.util.LogUtils
 
-class VideoRecordActivity : AppCompatActivity() {
+class VideoRecordActivity : BaseActivity<ActivityVideoRecordingBinding>(ActivityVideoRecordingBinding::inflate) {
 
-    private var mBinding : ActivityVideoRecordingBinding? = null
-    private val binding get() = mBinding!!
     private lateinit var videoRecordModel: VideoRecordModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewBinding()
         init()
         clickVideo()
         clickCancel()
-    }
-
-    private fun viewBinding(){
-        mBinding = ActivityVideoRecordingBinding.inflate(layoutInflater)
-        setContentView(binding.root)
     }
 
     private fun init(){

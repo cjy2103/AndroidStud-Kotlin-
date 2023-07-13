@@ -10,10 +10,9 @@ import com.example.camera.databinding.ActivityPhotoResultBinding
 import com.example.camera.model.PhotoCallback
 import com.example.camera.model.PhotoResultModel
 
-class PhotoResultActivity : AppCompatActivity() {
+class PhotoResultActivity : BaseActivity<ActivityPhotoResultBinding>(ActivityPhotoResultBinding::inflate) {
 
-    private var mBinding : ActivityPhotoResultBinding? = null
-    private val binding get() = mBinding!!
+
     private var photoResultModel = PhotoResultModel(this)
     private var imagePath : String? = null
     private lateinit var context : Context
@@ -21,18 +20,12 @@ class PhotoResultActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewBinding()
 
         init()
 
         clickOk()
 
         clickDelete()
-    }
-
-    private fun viewBinding(){
-        mBinding = ActivityPhotoResultBinding.inflate(layoutInflater)
-        setContentView(binding.root)
     }
 
     private fun init(){
