@@ -19,6 +19,9 @@ data class SnippetYt(
     val publishedAt: String,
     
     @SerializedName("country")
-    val country: String
+    val country: String,
+
+    @SerializedName("thumbnails")
+    val thumbnails : ThumbnailsYt
 
 )
