@@ -1,27 +1,32 @@
 package com.example.leakcanary
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import com.example.leakcanary.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityMainBinding
-    private lateinit var viewModel: MainViewModel
+    private var mBinding : ActivityMainBinding? = null
+    private val binding get() = mBinding!!
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dataBinding()
+        viewBinding()
+        moveSub()
     }
 
-    private fun dataBinding(){
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = this
+    private fun viewBinding(){
+        mBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+    }
 
-        viewModel.init(this)
+    private fun moveSub(){
+        binding.button.setOnClickListener {
+            val intent = Intent(this, SubActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
