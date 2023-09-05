@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/navigation">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/clearFragment">
 
+    <fragment
+        android:id="@+id/clearFragment"
+        android:name="com.example.singleactivity.ui.ClearFragment"
+        android:label="fragment_clear"
+        tools:layout="@layout/fragment_clear">
+
+        <action
+            android:id="@+id/action_clear_to_fail"
+            app:destination="@+id/failFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/failFragment"
+        android:name="com.example.singleactivity.ui.FailFragment"
+        android:label="fragment_fail"
+        tools:layout="@layout/fragment_fail">
+
+        <action
+            android:id="@+id/action_fail_to_clear"
+            app:destination="@+id/clearFragment"
+            />
+
+    </fragment>
 </navigation>
