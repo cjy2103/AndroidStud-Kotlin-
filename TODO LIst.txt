@@ -28,3 +28,6 @@ Hilt 예제 ( v )
 안드로이드(Android) Kotlin - RecyclerView(리사이클러뷰) + ListAdapter + MVVM 디테일 페이지 이동(클릭페이지이동) ( v )
 
 Android Chart ( ) 
+
+안드로이드(Android) Kotlin - SAA(Single Activity Architecture) 예제 ( v )
+
