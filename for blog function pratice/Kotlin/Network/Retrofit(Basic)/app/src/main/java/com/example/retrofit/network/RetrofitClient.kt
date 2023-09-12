@@ -6,27 +6,26 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
-    object RetrofitClient {
-        private const val baseUri = "https://jsonplaceholder.typicode.com"
-        private var retrofit : Retrofit? = null
 
-        fun getClient() : Retrofit {
-            if(retrofit == null){
-                val okHttpClient = OkHttpClient.Builder()
-                    .connectTimeout(10, TimeUnit.SECONDS)
-                    .writeTimeout(10, TimeUnit.SECONDS)
-                    .readTimeout(10, TimeUnit.SECONDS)
-                    .build()
+    private const val baseUri = "https://jsonplaceholder.typicode.com"
+    private var retrofit : Retrofit? = null
 
-                retrofit = Retrofit.Builder()
-                    .client(okHttpClient)
-                    .baseUrl(baseUri)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build()
-            }
+    fun getClient() : Retrofit {
+        if(retrofit == null){
+            val okHttpClient = OkHttpClient.Builder()
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(10, TimeUnit.SECONDS)
+                .build()
 
-            return retrofit!!
+            retrofit = Retrofit.Builder()
+                .client(okHttpClient)
+                .baseUrl(baseUri)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
         }
 
+        return retrofit!!
     }
+
 }
