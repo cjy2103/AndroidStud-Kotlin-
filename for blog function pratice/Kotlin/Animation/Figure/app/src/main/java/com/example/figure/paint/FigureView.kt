@@ -33,6 +33,7 @@ class FigureView(context: Context, attrs: AttributeSet? = null) : View(context, 
         invalidate()
         when(style) {
 
+            
         }
     }
 
