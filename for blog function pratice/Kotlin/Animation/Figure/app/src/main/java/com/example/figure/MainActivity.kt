@@ -24,23 +24,27 @@ class MainActivity : AppCompatActivity() {
 
         clickCircle()
         clickSquare()
-        clickRectangle()
+        clickTriangle()
     }
 
     private fun clickCircle(){
         binding.btnCircle.setOnClickListener {
             figureView.clickBtn(1)
+            figureView.invalidate()
         }
     }
 
     private fun clickSquare(){
         binding.btnSquare.setOnClickListener {
-
+            figureView.clickBtn(2)
+            figureView.invalidate()
         }
     }
 
-    private fun clickRectangle(){
+    private fun clickTriangle(){
         binding.btnTriangle.setOnClickListener {
+            figureView.clickBtn(3)
+            figureView.invalidate()
 
         }
     }
