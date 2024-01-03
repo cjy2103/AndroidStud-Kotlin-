@@ -2,4 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="stepInactiveColor">#CCCCCC</color>
+    <color name="stepActiveColor">#FF1100</color>
 </resources>
