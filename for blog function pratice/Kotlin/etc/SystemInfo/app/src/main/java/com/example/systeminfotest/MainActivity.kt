@@ -16,7 +16,6 @@ import java.io.FileReader
 import java.io.IOException
 import java.io.InputStreamReader
 import java.io.RandomAccessFile
-import java.util.Arrays
 
 
 class MainActivity : AppCompatActivity() {
@@ -37,39 +36,42 @@ class MainActivity : AppCompatActivity() {
             Log.d("Sensor", "Name: ${sensor.name}, Type: ${sensor.type}")
         }
 
+
+
         binding.btnInfo.setOnClickListener {
-
-
-            val batteryTemperature = getBatteryTemperature()
-            // 배터리 온도 사용
-            // 예: 로그에 출력
-            println("배터리 온도: $batteryTemperature")
-
-//            val temp = getCpuTemperature()
-//            println(temp)
-//            val hardware =
-//                (getSystemService(HARDWARE_PROPERTIES_SERVICE) as HardwarePropertiesManager)
-//                    .getDeviceTemperatures(HardwarePropertiesManager.DEVICE_TEMPERATURE_CPU, HardwarePropertiesManager.TEMPERATURE_CURRENT)
-//
-//            println(hardware)
-
-            val reader = RandomAccessFile("sys/class/thermal/thermal_zone1/temp", "r")
-            val line = reader.readLine()
-
-            println("test: $line")
-
-            val cpuTemp = line.toFloat()/1000.0f
-
-            binding.tvInfo.text = cpuTemp.toString()
-
             loadThermal()
 
+            test()
 
-            Log.v("ㅎㅇㅎㅇㅎㅇ", arrayOf(thermalList[0]).contentToString())
-            // 되는거
-            ///sys/class/thermal/thermal_zone1/temp 27도
+            Log.v("저장된 개수: ", "${thermalList.size}")
 
+            for(i in 0 until thermalList.size){
+                Log.v("이름:", "${thermalList[i].thermalName}")
+                Log.v("값:", thermalList[i].thermalValue)
+            }
 
+            val thermals = thermalList.map { it.thermalName to it.thermalValue }
+            binding.tvInfo.text = thermals.joinToString(", ")
+
+        }
+    }
+
+    private fun test(){
+        val thermalDirectory = File("/sys/devices/virtual/thermal/cooling_device13")
+
+        // 경로가 폴더인지 확인
+
+        // 경로가 폴더인지 확인
+        if (thermalDirectory.isDirectory) {
+            // 폴더 내의 모든 파일과 폴더 목록을 가져오기
+            val files = thermalDirectory.list()
+
+            // 파일 및 폴더 목록 출력
+            for (fileName in files) {
+                Log.d("ThermalInfo", "File or Folder: $fileName")
+            }
+        } else {
+            Log.e("ThermalInfo", "/sys/devices/virtual/thermal/ is not a directory")
         }
     }
 
@@ -80,44 +82,10 @@ class MainActivity : AppCompatActivity() {
         return temperature / 10f // 배터리 온도는 0.1도 단위로 제공됩니다.
     }
 
-    fun getCpuTemperature(): Float {
-        val process: Process
-        return try {
-            process = Runtime.getRuntime().exec("cat sys/class/thermal/thermal_zone0/temp")
-            process.waitFor()
-            val bufferedReader =
-                BufferedReader(InputStreamReader(process.inputStream))
-            val line = bufferedReader.readLine()
-            line.toFloat() / 1000.0f
-        } catch (e: java.lang.Exception) {
-            e.printStackTrace()
-            0.0f
-        }
-    }
-
-    private fun getInfo(){
-        val process: Process
-
-        try {
-            process =
-                Runtime.getRuntime().exec("cat sys/class/thermal/thermal_zone0/temp")
-            process.waitFor()
-            val bufferedReader =
-                BufferedReader(InputStreamReader(process.inputStream))
-            val line = bufferedReader.readLine()
-            line.toFloat() / 1000.0f
-            println("CPU 온도: $line")
-
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
     private lateinit var thermalList: ArrayList<ThermalInfo>
-    private lateinit var thermalList2: ArrayList<ThermalInfo>
     private fun loadThermal() {
         thermalList = ArrayList()
-        val dir = File("/sys/devices/virtual/thermal/")
+        val dir = File("/sys/devices/virtual/thermal")
         val files = dir.listFiles()
         for (file in files!!) {
             try {
@@ -127,9 +95,9 @@ class MainActivity : AppCompatActivity() {
                 val bufferedReaderName = BufferedReader(FileReader(tempFileName))
                 val lineName = bufferedReaderName.readLine()
                 val lineValue = bufferedReaderValue.readLine()
-                if (lineValue.trim { it <= ' ' } != "0") {
-                    thermalList.add(ThermalInfo(lineName, GetDetail.GetDetails.getFormattedTemp(lineValue)))
-                }
+
+                thermalList.add(ThermalInfo(lineName, lineValue))
+
                 bufferedReaderName.close()
                 bufferedReaderValue.close()
             } catch (ex: IOException) {
