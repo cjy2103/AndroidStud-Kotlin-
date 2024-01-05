@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         binding.btnInfo.setOnClickListener {
 
             val list = ArrayList<Person>()
@@ -23,14 +22,11 @@ class MainActivity : AppCompatActivity() {
             list.add(Person("영희",15))
             list.add(Person("다비",26))
 
-            Log.v("뭔데?", list[0].name)
-
             val persons = list.map {
                 val name = it.name
                 val age = it.age
                 "(Name : $name, age : $age)"
             }
-            Log.v("뭔데", persons.toString())
 
             binding.tvPerson.text = persons.joinToString ("\n")
         }
