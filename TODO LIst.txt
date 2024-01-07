@@ -27,7 +27,7 @@ Hilt 예제 ( v )
 
 안드로이드(Android) Kotlin - RecyclerView(리사이클러뷰) + ListAdapter + MVVM 디테일 페이지 이동(클릭페이지이동) ( v )
 
-안드로이드(Android) Kotlin - 리스트 내용을 원하는 형식으로 출력하기 ( )
+안드로이드(Android) Kotlin - 리스트 내용을 TextView에 원하는 형식으로 출력하기 ( v )
 
 Android Chart ( ) 
 
