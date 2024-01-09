@@ -23,25 +23,15 @@ class MainActivity : AppCompatActivity() {
     private var mBinding : ActivityMainBinding? = null
     private val binding get() = mBinding!!
 
+    private lateinit var thermalList: ArrayList<ThermalInfo>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-        val sensorList = sensorManager.getSensorList(Sensor.TYPE_ALL)
-
-        for (sensor in sensorList) {
-            Log.d("Sensor", "Name: ${sensor.name}, Type: ${sensor.type}")
-        }
-
-
-
         binding.btnInfo.setOnClickListener {
             loadThermal()
-
-            test()
 
             Log.v("저장된 개수: ", "${thermalList.size}")
 
@@ -82,7 +72,6 @@ class MainActivity : AppCompatActivity() {
         return temperature / 10f // 배터리 온도는 0.1도 단위로 제공됩니다.
     }
 
-    private lateinit var thermalList: ArrayList<ThermalInfo>
     private fun loadThermal() {
         thermalList = ArrayList()
         val dir = File("/sys/devices/virtual/thermal")

@@ -45,4 +45,6 @@ Android Chart ( )
 
 안드로이드(Android) 입문/Kotlin (네트워크) - 레트로핏(Retrofit) / 네트워크 통신 ( v )
 
- 안드로이드(Android) Kotlin - FullScreen(풀스크린) / window.decorview.systemuivisibility deprecated ( v )
+안드로이드(Android) Kotlin - FullScreen(풀스크린) / window.decorview.systemuivisibility deprecated ( v )
+
+안드로이드(Android) Kotlin - CPU 정보, 온도 가져오기 (갤럭시) ( v )
