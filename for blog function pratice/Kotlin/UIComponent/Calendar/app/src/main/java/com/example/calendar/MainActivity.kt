@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.text.set
 import androidx.lifecycle.viewModelScope
 import com.example.calendar.data.Data
 import com.example.calendar.databinding.ActivityMainBinding
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = mBinding!!
 
     private lateinit var scheduleDao: ScheduleDao
-    private lateinit var schedule: Flow<List<Schedule>>
+    private lateinit var schedule: Flow<Schedule>
 
     private val scope = CoroutineScope(Dispatchers.Main)
 
@@ -35,8 +36,14 @@ class MainActivity : AppCompatActivity() {
 
         init()
 
+
+        val date = binding.calendarView.date + 86400000
+
+        
+
         binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             binding.tvDate.text = "${year}년 ${month+1}월 ${dayOfMonth}일"
+            Log.v("22222222222","22222222222")
 
             //TODO : 데이터 들고오기
             loadData()
@@ -44,6 +51,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnSave.setOnClickListener {
             saveSchedule()
+        }
+
+        binding.btnDelete.setOnClickListener {
+            binding.calendarView.date = date
         }
 
     }
@@ -57,8 +68,13 @@ class MainActivity : AppCompatActivity() {
     private fun loadData(){
         val date = binding.tvDate.text.toString()
         scope.launch {
-            scheduleDao.loadByDate(date).collect { list ->
-                Log.v("값은 뭘까", list[0].title)
+            scheduleDao.loadByDate(date).collect {
+                binding.edtSchedule.setText("")
+                it?.let {
+                    binding.edtSchedule.setText(it.description)
+                }
+                Log.v("라앙ㄹ","111212121")
+
             }
 
         }
