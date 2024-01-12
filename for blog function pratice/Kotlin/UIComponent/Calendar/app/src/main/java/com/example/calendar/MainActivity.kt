@@ -3,19 +3,15 @@ package com.example.calendar
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.core.text.set
-import androidx.lifecycle.viewModelScope
-import com.example.calendar.data.Data
 import com.example.calendar.databinding.ActivityMainBinding
 import com.example.calendar.room.Schedule
 import com.example.calendar.room.ScheduleDao
 import com.example.calendar.room.ScheduleDataBase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,7 +20,6 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = mBinding!!
 
     private lateinit var scheduleDao: ScheduleDao
-    private lateinit var schedule: Flow<Schedule>
 
     private val scope = CoroutineScope(Dispatchers.Main)
 
@@ -36,16 +31,19 @@ class MainActivity : AppCompatActivity() {
 
         init()
 
+        val currentDate = binding.calendarView.date
 
-        val date = binding.calendarView.date + 86400000
+        val dateFormat = SimpleDateFormat("yyyy년 M월 dd일", Locale.getDefault())
 
-        
+        val formattedDate = dateFormat.format(currentDate)
+
+        binding.tvDate.text = formattedDate
+
+        loadData()
 
         binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             binding.tvDate.text = "${year}년 ${month+1}월 ${dayOfMonth}일"
-            Log.v("22222222222","22222222222")
 
-            //TODO : 데이터 들고오기
             loadData()
         }
 
@@ -54,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnDelete.setOnClickListener {
-            binding.calendarView.date = date
+            deleteSchedule()
         }
 
     }
@@ -72,11 +70,9 @@ class MainActivity : AppCompatActivity() {
                 binding.edtSchedule.setText("")
                 it?.let {
                     binding.edtSchedule.setText(it.description)
+                    binding.edtSchedule.setSelection(binding.edtSchedule.text.length)
                 }
-                Log.v("라앙ㄹ","111212121")
-
             }
-
         }
     }
 
@@ -89,7 +85,17 @@ class MainActivity : AppCompatActivity() {
 
         scope.launch {
             scheduleDao.insertSchedule(schedule)
+            binding.edtSchedule.setSelection(binding.edtSchedule.text.length)
+
         }
 
+    }
+
+    private fun deleteSchedule(){
+        scope.launch {
+            val date = binding.tvDate.text.toString()
+            scheduleDao.deleteByDate(date)
+            binding.edtSchedule.setText("")
+        }
     }
 }
