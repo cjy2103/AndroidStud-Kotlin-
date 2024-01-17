@@ -3,12 +3,14 @@ package com.example.calendar
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.calendar.databinding.ActivityMainBinding
 import com.example.calendar.room.Schedule
 import com.example.calendar.room.ScheduleDao
 import com.example.calendar.room.ScheduleDataBase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -43,7 +45,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             binding.tvDate.text = "${year}년 ${month+1}월 ${dayOfMonth}일"
-
             loadData()
         }
 
@@ -66,12 +67,13 @@ class MainActivity : AppCompatActivity() {
     private fun loadData(){
         val date = binding.tvDate.text.toString()
         scope.launch {
-            scheduleDao.loadByDate(date).collect {
+            val schedule = scheduleDao.loadByDate(date).first()
+
+            if(schedule != null){
+                binding.edtSchedule.setText(schedule.description)
+                binding.edtSchedule.setSelection(binding.edtSchedule.text.length)
+            } else {
                 binding.edtSchedule.setText("")
-                it?.let {
-                    binding.edtSchedule.setText(it.description)
-                    binding.edtSchedule.setSelection(binding.edtSchedule.text.length)
-                }
             }
         }
     }
@@ -86,7 +88,6 @@ class MainActivity : AppCompatActivity() {
         scope.launch {
             scheduleDao.insertSchedule(schedule)
             binding.edtSchedule.setSelection(binding.edtSchedule.text.length)
-
         }
 
     }
