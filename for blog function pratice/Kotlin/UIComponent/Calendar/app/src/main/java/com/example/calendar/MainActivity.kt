@@ -3,7 +3,6 @@ package com.example.calendar
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.example.calendar.databinding.ActivityMainBinding
 import com.example.calendar.room.Schedule
 import com.example.calendar.room.ScheduleDao
