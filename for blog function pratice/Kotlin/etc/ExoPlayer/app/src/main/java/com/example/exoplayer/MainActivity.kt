@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         exoPlayer = ExoPlayer.Builder(this).build()
 
         val mediaItem = MediaItem.fromUri(
-            RawResourceDataSource.buildRawResourceUri(R.raw.fhd)
+            RawResourceDataSource.buildRawResourceUri(R.raw.fhd2)
         )
         // 실행할 비디오 설정
         exoPlayer.setMediaItem(mediaItem)
